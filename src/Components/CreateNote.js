@@ -10,31 +10,14 @@ import "../css/CreateNote.css";
 
 
 // submit button not sending to db//
-class CreateNote extends Component {
-    state = {
-        title: '',
-        content: ''
+const CreateNote = props => {
+    console.log('CREATE', props)
+    const submit = event => {
+        event.preventDefault()
+        props.CreateNewNote()
+        props.history.push('/')
     }
-    updateInput = e => {
-        this.setState({ [e.target.name]: e.target.value });
-    }
-
-    createNewNote = () => {
-        const { title, content, notes } = this.state;
-
-        axios
-            .post("https://lambda-notes-back-end.herokuapp.com/api/notes", { title, content })
-            .then(({ data }) =>
-                this.setState({
-                    title: '',
-                    content: '',
-                    // notes: [...notes, data]
-                })
-
-            )
-            .catch(err => console.log(err));
-    };
-    render() {
+   
         return (
             <Container className='container'>
                 <Row>
@@ -48,20 +31,20 @@ class CreateNote extends Component {
                             <input type='text'
                                 name='title'
                                 placeholder='Note Title (required)'
-                                value={ this.state.title }
-                                onChange={ this.updateInput }
+                                value={ props.title }
+                                onChange={ props.updateInput }
                             />
 
                             <textarea name='content'
                                 rows='15'
                                 cols='90'
                                 placeholder='Note Content (required)'
-                                value={ this.state.content }
-                                onChange={ this.updateInput }
+                                value={ props.content }
+                                onChange={ props.updateInput }
                             />
 
                             <Link to={ '/' }>
-                                <button className='submit' onClick={ this.createNewNote }>Save</button>
+                                <button className='submit' onClick={props.CreateNewNote}>Save</button>
                             </Link>
                         </div>
                     </Col>
@@ -70,14 +53,7 @@ class CreateNote extends Component {
         )
     }
     
-}
+// }
 
 export default CreateNote;
-
-// const mapStateToProps = (state) => {
-//     return {
-//         notes: state
-//     };
-// }
-// export default connect(mapStateToProps, { addNote, deleteNote })(CreateNote);
 

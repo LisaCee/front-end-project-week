@@ -26,25 +26,25 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
-  // updateInput = e => {
-  //   this.setState({ [e.target.name]: e.target.value });
-  // }
+  updateInput = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  }
 
-  // createNewNote = () => {
-  //   const { title, content, notes } = this.state;
+  createNewNote = () => {
+    const { title, content, notes } = this.state;
 
-  //   axios
-  //     .post("https://lambda-notes-back-end.herokuapp.com/api/notes", { title, content })
-  //     .then(({ data }) =>
-  //       this.setState({
-  //         title: '',
-  //         content: '',
-  //         notes: [...notes, data]
-  //       })
+    axios
+      .post("https://lambda-notes-back-end.herokuapp.com/api/notes", { title, content })
+      .then(({ data }) =>
+        this.setState({
+          title: '',
+          content: '',
+          notes: [...notes, data]
+        })
 
-  //     )
-  //     .catch(err => console.log(err));
-  // };
+      )
+      .catch(err => console.log(err));
+  };
 
   renderListView = props => <ListView notes={ this.state.notes } />;
 
@@ -53,8 +53,8 @@ class App extends Component {
       { ...props }
       title={ this.state.title }
       content={ this.state.content }
-      updateInput={ this.state.updateInput }
-      createNewNote={ this.state.createNewNote }
+      updateInput={ this.updateInput }
+      createNewNote={ this.createNewNote }
     />
   )
 
@@ -62,7 +62,7 @@ class App extends Component {
     return (
       <div className='app'>
         <Route exact path='/' render={ this.renderListView } />
-        <Route exact path='/create' component={ CreateNote } />
+        <Route exact path='/create' render={ this.renderCreate } />
         <Route exact path='/:id' component={ NoteView } />
         <Route exact path='/:id/edit' component={ EditView } />
       </div>
