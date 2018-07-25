@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
+// import { connect } from 'react-redux';
 import { Container, Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom'
-import axios from 'axios';
+// import axios from 'axios';
 
 import '../css/ListView.css'
 import Sidebar from './Sidebar';
@@ -14,25 +14,8 @@ const shortenNote = (str) => {
     return str;
 }
 
-class ListView extends Component {
-    state = {
-        notes: []
-    }
-
-    componentDidMount() {
-         axios
-            .get('https://lambda-notes-back-end.herokuapp.com/api/notes')
-            .then(res => {
-                // if (res.data.length === 0) {
-                //     alert('Add a note to begin')
-                // }
-                const notes = res.data;
-                console.log(res.data)
-                this.setState({ notes })
-            })
-
-    }
-    render() {
+const ListView = props => {
+   
         return (
             <Container className='container'>
                 <Row>
@@ -42,7 +25,7 @@ class ListView extends Component {
                     <Col xs='9'>
                         <h4 className='yourNotes'>Your Notes:</h4>
 
-                        { this.state.notes.map((note, id) =>
+                        { props.notes.map((note, id) =>
                             <div className='thumbnail'
                                 key={ note.title }>
                                 <Link to={ `/${note._id}` }>
@@ -58,12 +41,5 @@ class ListView extends Component {
         )
     }
 
-}
-
-const mapStateToProps = state => {
-    return {
-        notes: state,
-    }
-}
-export default connect(mapStateToProps)(ListView);
+export default ListView;
 
