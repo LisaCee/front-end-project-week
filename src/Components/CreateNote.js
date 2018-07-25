@@ -14,7 +14,7 @@ const CreateNote = props => {
     console.log('CREATE', props)
     const submit = event => {
         event.preventDefault()
-        props.CreateNewNote()
+        props.createNewNote()
         props.history.push('/')
     }
    
@@ -44,7 +44,7 @@ const CreateNote = props => {
                             />
 
                             <Link to={ '/' }>
-                                <button className='submit' onClick={props.CreateNewNote}>Save</button>
+                                <button className='submit' onClick={props.createNewNote}>Save</button>
                             </Link>
                         </div>
                     </Col>
