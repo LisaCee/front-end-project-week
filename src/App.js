@@ -26,25 +26,25 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
-  updateInput = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  }
+  // updateInput = e => {
+  //   this.setState({ [e.target.name]: e.target.value });
+  // }
 
-  createNewNote = () => {
-    const {title, content, notes} = this.state;
+  // createNewNote = () => {
+  //   const { title, content, notes } = this.state;
 
-    axios
-      .post("https://lambda-notes-back-end.herokuapp.com/api/notes", {title, content})
-      .then(({data}) => 
-        this.setState({
-          title: '',
-          content: '',
-          notes: [...notes, data]
-        })
-        
-      )
-      .catch(err => console.log(err));
-  };
+  //   axios
+  //     .post("https://lambda-notes-back-end.herokuapp.com/api/notes", { title, content })
+  //     .then(({ data }) =>
+  //       this.setState({
+  //         title: '',
+  //         content: '',
+  //         notes: [...notes, data]
+  //       })
+
+  //     )
+  //     .catch(err => console.log(err));
+  // };
 
   renderListView = props => <ListView notes={ this.state.notes } />;
 

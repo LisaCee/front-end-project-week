@@ -15,31 +15,31 @@ const shortenNote = (str) => {
 }
 
 const ListView = props => {
-   
-        return (
-            <Container className='container'>
-                <Row>
-                    <Col xs='3'>
-                        <Sidebar />
-                    </Col>
-                    <Col xs='9'>
-                        <h4 className='yourNotes'>Your Notes:</h4>
 
-                        { props.notes.map((note, id) =>
-                            <div className='thumbnail'
-                                key={ note.title }>
-                                <Link to={ `/${note._id}` }>
-                                    <div className='title'>{ note.title }</div>
-                                    <hr className='line' />
-                                    <div className='content'>{ shortenNote(note.content) }</div>
-                                </Link>
-                            </div>
-                        ) }
-                    </Col>
-                </Row>
-            </Container>
-        )
-    }
+    return (
+        <Container className='container'>
+            <Row>
+                <Col xs='3'>
+                    <Sidebar />
+                </Col>
+                <Col xs='9'>
+                    <h4 className='yourNotes'>Your Notes:</h4>
+
+                    { props.notes.map((note, id) =>
+                        <div className='thumbnail'
+                            key={ note.title }>
+                            <Link to={ `/${note._id}` }>
+                                <div className='title'>{ note.title }</div>
+                                <hr className='line' />
+                                <div className='content'>{ shortenNote(note.content) }</div>
+                            </Link>
+                        </div>
+                    ) }
+                </Col>
+            </Row>
+        </Container>
+    )
+}
 
 export default ListView;
 

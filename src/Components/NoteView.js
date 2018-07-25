@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-import { deleteNote, editNote } from '../Actions';
+// import { deleteNote, editNote } from '../Actions';
 import DeleteModal from './DeleteModal';
 import Sidebar from './Sidebar';
 import '../css/NoteView.css';
@@ -15,7 +15,7 @@ class NoteView extends Component {
         note: [],
         modal: false,
     };
-   
+
     toggle = () => {
         this.setState({ modal: !this.state.modal });
     }
@@ -24,10 +24,10 @@ class NoteView extends Component {
         axios
             .get(`https://lambda-notes-back-end.herokuapp.com/api/notes/${this.props.match.params.id}`)
             .then(res => {
-            const note = res.data;
-            this.setState({ note });
-            // console.log(res.data)
-        });
+                const note = res.data;
+                this.setState({ note });
+                // console.log(res.data)
+            });
         // const note = await this.props.notes.find(note => note.id === this.state.id);
         // this.setState({ note });
     }
@@ -80,9 +80,10 @@ class NoteView extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        notes: state,
-    };
-};
-export default connect(mapStateToProps, { deleteNote, editNote })(NoteView);
+// const mapStateToProps = state => {
+//     return {
+//         notes: state,
+//     };
+// };
+// export default connect(mapStateToProps, { deleteNote, editNote })(NoteView);
+export default NoteView;
