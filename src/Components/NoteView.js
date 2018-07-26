@@ -1,10 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
-// import { deleteNote, editNote } from '../Actions';
 import DeleteModal from './DeleteModal';
 import Sidebar from './Sidebar';
 import '../css/NoteView.css';
@@ -20,7 +17,7 @@ const NoteView = props => {
                         </Col>
                         <Col xs='9'>
                             <div className='viewLinks'>
-                                {/* <Link to={ `/${this.props.match.params.id}/edit` }>
+                                <Link to={ `/${props.location.id}/edit` }>
                                     edit
                                 </Link>
                                 <a className='noteViewLink' onClick={ this.toggle }>delete</a>
@@ -30,7 +27,7 @@ const NoteView = props => {
                                         delete={ this.props.deleteNote }
                                         { ...this.state }
                                     />
-                                ) } */}
+                                ) }
                             </div>
                             <h4 className='noteTitle'>{ props.location.title }</h4>
                             <p>{ props.location.content }</p>

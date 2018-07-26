@@ -16,6 +16,7 @@ class App extends Component {
     content: ''
   };
 
+  //List view
   componentDidMount() {
     axios
       .get("https://lambda-notes-back-end.herokuapp.com/api/notes")
@@ -92,7 +93,7 @@ class App extends Component {
       createNewNote={ this.createNewNote }
     />
   )
-  
+
   renderNote = props => (
     <NoteView
       { ...props }
