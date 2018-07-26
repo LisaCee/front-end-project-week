@@ -76,7 +76,13 @@ class App extends Component {
       .delete(
         `https://lambda-notes-back-end.herokuapp.com/api/notes/${id}`)
       .then(() => {
-        this.componentDidMount()
+        axios
+          .get("https://lambda-notes-back-end.herokuapp.com/api/notes")
+          .then(res => {
+            const notes = res.data;
+            this.setState({ notes });
+          })
+          .catch(err => console.log(err));
       })
       .catch(err => console.log(err))
   }

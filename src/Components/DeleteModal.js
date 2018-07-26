@@ -4,7 +4,7 @@ import { Button, Modal, ModalBody } from 'reactstrap';
 import '../css/DeleteModal.css';
 
 const DeleteModal = (props) => {
-    console.log('MODAL', props)
+
     return (
         <div>
             <Modal isOpen={ props.modal } toggle={ props.toggle }>
