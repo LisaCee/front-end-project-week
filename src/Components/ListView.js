@@ -15,7 +15,7 @@ const shortenNote = (str) => {
 }
 
 const ListView = props => {
-
+    console.log('LIST', props)
     return (
         <Container className='container'>
             <Row>

@@ -48,13 +48,14 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
-  editCurrentNote = id => {
+  editCurrentNote = _id => {
+    console.log('STATE', this.state)
     const { title, content } = this.state;
     axios
-      .put(`https://lambda-notes-back-end.herokuapp.com/api/notes/5b58f465dae16b0004fff99c/edit`, { title, content })
+      .put(`https://lambda-notes-back-end.herokuapp.com/api/notes/${_id}/edit`, { title, content })
       .then(() => {
         const notes = this.state.notes.map(
-          note => (note._id === id ? { title, content } : note)
+          note => (note._id === _id ? { title, content } : note)
         )
         this.setState({
           title: '',
