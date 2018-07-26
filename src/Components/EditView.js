@@ -1,12 +1,16 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import { Link } from 'react-router-dom';
 
 import Sidebar from './Sidebar';
 import "../css/CreateNote.css";
 
+
 const EditView = props => {
-    console.log('EDIT', props)
+    const handleEdit = e => {
+        e.preventDefault()
+        props.editCurrentNote(props.match.params.id)
+        props.history.push('/')
+    }
 
         return (
             <Container className='container'>
@@ -35,9 +39,9 @@ const EditView = props => {
                                 onChange={ props.updateInput }
                             />
 
-                            <Link to={ '/' }>
-                                <button className='submit' onClick={ props.editCurrentNote }>Update</button>
-                            </Link>
+                          
+                                <button className='submit' onClick={ handleEdit }>Update</button>
+                            
                         </div>
                     </Col>
 
