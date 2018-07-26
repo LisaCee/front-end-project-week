@@ -49,9 +49,8 @@ class App extends Component {
 
   editCurrentNote = id => {
     const { title, content } = this.state;
-
     axios
-      .put(`https://lambda-notes-back-end.herokuapp.com/api/notes/${id}`, { title, content })
+      .put(`https://lambda-notes-back-end.herokuapp.com/api/notes/5b58f465dae16b0004fff99c/edit`, { title, content })
       .then(() => {
         const notes = this.state.notes.map(
           note => (note._id === id ? { title, content } : note)
@@ -68,9 +67,7 @@ class App extends Component {
   deleteNote = (id) => {
     axios
       .delete(
-        `https://lambda-notes-back-end.herokuapp.com/api/notes/${
-        this.props.match.params.id
-        }`
+        `https://lambda-notes-back-end.herokuapp.com/api/notes/${id}`
       )
       .then(res => {
         const note = res.data;
@@ -97,8 +94,6 @@ class App extends Component {
   renderNote = props => (
     <NoteView
       { ...props }
-      // title={ this.state.title }
-      // content={ this.state.content }
       deleteNote={ this.deleteNote }
       editCurrentNote={ this.editCurrentNote }
     />

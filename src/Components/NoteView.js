@@ -17,17 +17,17 @@ const NoteView = props => {
                         </Col>
                         <Col xs='9'>
                             <div className='viewLinks'>
-                                <Link to={ `/${props.location.id}/edit` }>
+                                <Link to={ `${props.match.params.id}/edit` }>
                                     edit
                                 </Link>
                                 <a className='noteViewLink' onClick={ this.toggle }>delete</a>
-                                { this.state.modal && (
+                                {/* { this.state.modal && (
                                     <DeleteModal
                                         toggle={ this.toggle }
                                         delete={ this.props.deleteNote }
                                         { ...this.state }
                                     />
-                                ) }
+                                ) } */}
                             </div>
                             <h4 className='noteTitle'>{ props.location.title }</h4>
                             <p>{ props.location.content }</p>
