@@ -7,6 +7,7 @@ import CreateNote from './Components/CreateNote';
 import ListView from './Components/ListView';
 import NoteView from './Components/NoteView';
 import EditView from './Components/EditView';
+import DeleteModal from './Components/DeleteModal';
 
 
 class App extends Component {
@@ -73,14 +74,12 @@ class App extends Component {
   deleteNote = (id) => {
     axios
       .delete(
-        `https://lambda-notes-back-end.herokuapp.com/api/notes/${id}`
-      )
-      .then(res => {
-        const note = res.data;
-        console.log(note);
-      });
+        `https://lambda-notes-back-end.herokuapp.com/api/notes/${id}`)
+      .then(() => {
+        this.componentDidMount()
+      })
+      .catch(err => console.log(err))
   }
-
 
   renderListView = props => <ListView notes={ this.state.notes } />;
 
@@ -122,6 +121,7 @@ class App extends Component {
         <Route exact path='/create' render={ this.renderCreate } />
         <Route exact path='/:id' render={ this.renderNote } />
         <Route exact path='/:id/edit' render={ this.renderEdit } />
+        <Route exact path='/:id' render={ this.renderDelete } />
       </div>
     );
   }

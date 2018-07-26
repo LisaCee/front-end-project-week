@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
@@ -10,16 +10,9 @@ const NoteView = props => {
     console.log('NOTE', props)
 
     const handleDelete = e => {
-        // e.preventDefault()
         props.deleteNote(props.match.params.id)
         props.history.push('/')
     }
-
-    // const handleToggle = e => {
-    //     e.preventDefault();
-    //     props.toggle(props.match.params.id)
-    // }
-
 
     return (
         <div>
@@ -36,10 +29,10 @@ const NoteView = props => {
                             <a className='noteViewLink' onClick={ props.toggle }>delete</a>
                             { props.modal && (
                                 <DeleteModal
+                                    modal={ props.modal }
                                     toggle={ props.toggle }
-                                    delete={ props.delete }
-                                    id={ props.location.id }
-                                    { ...this.state }
+                                    delete={ handleDelete }
+                                    id={ props.match.params.id }
                                 />
                             ) }
                         </div>
