@@ -12,22 +12,21 @@ class NoteView extends Component {
         super(props);
         this.state = {
             modal: false,
-            note: []
         }
         console.log('NOTE', props)
         console.log('STATE', this.state)
     }
     
-    componentDidMount() {
-        axios
-            .get(`https://lambda-notes-back-end.herokuapp.com/api/notes/${this.props.match.params.id}`)
-            .then(res => {
-                console.log(res.data)
-                const note = res.data;
-                this.setState({ note });
-            })
-            .catch(err => console.log(err));
-    }
+    // componentDidMount() {
+    //     axios
+    //         .get(`https://lambda-notes-back-end.herokuapp.com/api/notes/${this.props.match.params.id}`)
+    //         .then(res => {
+    //             console.log(res.data)
+    //             const note = res.data;
+    //             this.setState({ note });
+    //         })
+    //         .catch(err => console.log(err));
+    // }
     render() {
 
         return (
@@ -38,8 +37,8 @@ class NoteView extends Component {
                             <Sidebar />
                         </Col>
                         <Col xs='9'>
-                            {/* <div className='viewLinks'>
-                                <Link to={ `${props.match.params.id}/edit` }>
+                            <div className='viewLinks'>
+                                <Link to={ `${this.props.match.params.id}/edit` }>
                                     edit
                                 </Link>
                                 <a className='noteViewLink' onClick={ this.toggle }>delete</a>
@@ -51,8 +50,8 @@ class NoteView extends Component {
                                     />
                                 ) }
                             </div>
-                            <h4 className='noteTitle'>{ props.location.title }</h4>
-                            <p>{ props.location.content }</p> */}
+                            <h4 className='noteTitle'>{ this.props.location.title }</h4>
+                            <p>{ this.props.location.content }</p>
                         </Col>
                     </Row>
                 </Container>
