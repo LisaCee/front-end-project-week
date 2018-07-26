@@ -7,7 +7,7 @@ import Sidebar from './Sidebar';
 import '../css/NoteView.css';
 
 const NoteView = props => {
- 
+    console.log('PROPS', props)
     const handleDelete = e => {
         props.deleteNote(props.match.params.id)
         props.history.push('/')
@@ -15,6 +15,7 @@ const NoteView = props => {
 
     return (
         <div>
+        
             <Container>
                 <Row>
                     <Col xs='3'>
@@ -22,7 +23,7 @@ const NoteView = props => {
                     </Col>
                     <Col xs='9'>
                         <div className='viewLinks'>
-                            <Link to={ `${props.match.params.id}/edit` }>
+                            <Link to={ { pathname: `/${props.match.params.id}/edit`, id: props.location._id }  }>
                                 edit
                                 </Link>
                             <a className='noteViewLink' onClick={ props.toggle }>delete</a>

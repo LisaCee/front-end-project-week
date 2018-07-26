@@ -115,6 +115,7 @@ class App extends Component {
       { ...props }
       title={ this.state.title }
       content={ this.state.content }
+      id={ this.state.id }
       updateInput={ this.updateInput }
       editCurrentNote={ this.editCurrentNote }
     />
