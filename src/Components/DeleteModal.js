@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, Modal, ModalBody } from 'reactstrap';
 import { Link } from "react-router-dom";
-// import axios from 'axios';
 
 import '../css/DeleteModal.css';
 

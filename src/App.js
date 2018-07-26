@@ -13,7 +13,8 @@ class App extends Component {
   state = {
     notes: [],
     title: '',
-    content: ''
+    content: '',
+    modal: false
   };
 
   //List view
@@ -58,7 +59,7 @@ class App extends Component {
         this.setState({
           title: '',
           content: '',
-          notes
+          notes: [...notes]
         })
       })
       .catch(err => console.log(err));
