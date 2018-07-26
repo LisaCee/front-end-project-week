@@ -46,6 +46,41 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
+  editCurrentNote = id => {
+    const { title, content } = this.state;
+
+    axios
+      .put(`https://lambda-notes-back-end.herokuapp.com/api/notes/${id}`, { title, content })
+      .then(() => {
+        const notes = this.state.notes.map(
+          note => (note._id === id ? { title, content } : note)
+        )
+        this.setState({
+          title: '',
+          content: '',
+          notes
+        })
+      })
+      .catch(err => console.log(err));
+  };
+
+  deleteNote = (id) => {
+    axios
+      .delete(
+        `https://lambda-notes-back-end.herokuapp.com/api/notes/${
+        this.props.match.params.id
+        }`
+      )
+      .then(res => {
+        const note = res.data;
+        // this.setState({ note });
+        console.log(note);
+        // this.props.deleteNote(id);
+        // this.props.history.push('/');
+      });
+  }
+
+
   renderListView = props => <ListView notes={ this.state.notes } />;
 
   renderCreate = props => (
@@ -57,14 +92,34 @@ class App extends Component {
       createNewNote={ this.createNewNote }
     />
   )
+  
+  renderNote = props => (
+    <NoteView
+      { ...props }
+      // title={ this.state.title }
+      // content={ this.state.content }
+      deleteNote={ this.deleteNote }
+      editCurrentNote={ this.editCurrentNote }
+    />
+  )
 
+  renderEdit = props => (
+    <EditView
+      { ...props }
+      title={ this.state.title }
+      content={ this.state.content }
+      updateInput={ this.updateInput }
+      editCurrentNote={ this.editCurrentNote }
+    />
+  )
+ 
   render() {
     return (
       <div className='app'>
         <Route exact path='/' render={ this.renderListView } />
         <Route exact path='/create' render={ this.renderCreate } />
-        <Route exact path='/:id' component={ NoteView } />
-        <Route exact path='/:id/edit' component={ EditView } />
+        <Route exact path='/:id' render={ this.renderNote } />
+        <Route exact path='/:id/edit' render={ this.renderEdit } />
       </div>
     );
   }

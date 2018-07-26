@@ -9,46 +9,8 @@ import DeleteModal from './DeleteModal';
 import Sidebar from './Sidebar';
 import '../css/NoteView.css';
 
-class NoteView extends Component {
-    state = {
-        // id: +this.props.match.params.id,
-        note: [],
-        modal: false,
-    };
-
-    toggle = () => {
-        this.setState({ modal: !this.state.modal });
-    }
-
-    async componentDidMount() {
-        axios
-            .get(`https://lambda-notes-back-end.herokuapp.com/api/notes/${this.props.match.params.id}`)
-            .then(res => {
-                const note = res.data;
-                this.setState({ note });
-                // console.log(res.data)
-            });
-        // const note = await this.props.notes.find(note => note.id === this.state.id);
-        // this.setState({ note });
-    }
-
-    delete = (id) => {
-        axios
-            .delete(
-                `https://lambda-notes-back-end.herokuapp.com/api/notes/${
-                this.props.match.params.id
-                }`
-            )
-            .then(res => {
-                const note = res.data;
-                // this.setState({ note });
-                console.log(note);
-                // this.props.deleteNote(id);
-                // this.props.history.push('/');
-            });
-    }
-
-    render() {
+const NoteView = props => {
+    console.log('NOTE', props)
         return (
             <div>
                 <Container>
@@ -58,32 +20,25 @@ class NoteView extends Component {
                         </Col>
                         <Col xs='9'>
                             <div className='viewLinks'>
-                                <Link to={ `/${this.props.match.params.id}/edit` }>
+                                {/* <Link to={ `/${this.props.match.params.id}/edit` }>
                                     edit
                                 </Link>
                                 <a className='noteViewLink' onClick={ this.toggle }>delete</a>
                                 { this.state.modal && (
                                     <DeleteModal
                                         toggle={ this.toggle }
-                                        delete={ this.delete }
+                                        delete={ this.props.deleteNote }
                                         { ...this.state }
                                     />
-                                ) }
+                                ) } */}
                             </div>
-                            <h4 className='noteTitle'>{ this.state.note.title }</h4>
-                            <p>{ this.state.note.content }</p>
+                            <h4 className='noteTitle'>{ props.location.title }</h4>
+                            <p>{ props.location.content }</p>
                         </Col>
                     </Row>
                 </Container>
             </div>
         );
     }
-}
 
-// const mapStateToProps = state => {
-//     return {
-//         notes: state,
-//     };
-// };
-// export default connect(mapStateToProps, { deleteNote, editNote })(NoteView);
 export default NoteView;

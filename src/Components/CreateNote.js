@@ -9,14 +9,13 @@ import Sidebar from './Sidebar';
 import "../css/CreateNote.css";
 
 
-// submit button not sending to db//
 const CreateNote = props => {
-    console.log('CREATE', props)
-    const submit = event => {
-        event.preventDefault()
-        props.createNewNote()
-        props.history.push('/')
-    }
+    // console.log('CREATE', props)
+    // const submit = event => {
+    //     event.preventDefault()
+    //     props.createNewNote()
+    //     props.history.push('/')
+    // }
    
         return (
             <Container className='container'>
@@ -26,7 +25,7 @@ const CreateNote = props => {
                     </Col>
                     <Col xs='9'>
                         <div className='newNote'>
-                            <h4 className='createNoteHeading'>Create a Note</h4>
+                            <h4 className='createNoteHeading'>Create New Note</h4>
 
                             <input type='text'
                                 name='title'
