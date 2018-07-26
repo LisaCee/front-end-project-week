@@ -6,50 +6,51 @@ import DeleteModal from './DeleteModal';
 import Sidebar from './Sidebar';
 import '../css/NoteView.css';
 
-class NoteView extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            modal: false,
-        }
-        console.log('NOTE', props)
-    }
-    toggle = () => {
-        this.setState({ modal: !this.state.modal });
-    }
-    render() {
+const NoteView = props => {
+    console.log('NOTE', props)
 
-        return (
-            <div>
-                <Container>
-                    <Row>
-                        <Col xs='3'>
-                            <Sidebar />
-                        </Col>
-                        <Col xs='9'>
-                            <div className='viewLinks'>
-                                <Link to={ `${this.props.match.params.id}/edit` }>
-                                    edit
+    const handleDelete = e => {
+        // e.preventDefault()
+        props.deleteNote(props.match.params.id)
+        props.history.push('/')
+    }
+
+    // const handleToggle = e => {
+    //     e.preventDefault();
+    //     props.toggle(props.match.params.id)
+    // }
+
+
+    return (
+        <div>
+            <Container>
+                <Row>
+                    <Col xs='3'>
+                        <Sidebar />
+                    </Col>
+                    <Col xs='9'>
+                        <div className='viewLinks'>
+                            <Link to={ `${props.match.params.id}/edit` }>
+                                edit
                                 </Link>
-                                <a className='noteViewLink' onClick={ this.toggle }>delete</a>
-                                { this.state.modal && (
-                                    <DeleteModal
-                                        toggle={ this.toggle }
-                                        delete={ this.props.deleteNote }
-                                        id={this.props.location.id}
-                                        { ...this.state }
-                                    />
-                                ) }
-                            </div>
-                            <h4 className='noteTitle'>{ this.props.location.title }</h4>
-                            <p>{ this.props.location.content }</p>
-                        </Col>
-                    </Row>
-                </Container>
-            </div>
-        );
-    }
-        
-    }
+                            <a className='noteViewLink' onClick={ props.toggle }>delete</a>
+                            { props.modal && (
+                                <DeleteModal
+                                    toggle={ props.toggle }
+                                    delete={ props.delete }
+                                    id={ props.location.id }
+                                    { ...this.state }
+                                />
+                            ) }
+                        </div>
+                        <h4 className='noteTitle'>{ props.location.title }</h4>
+                        <p>{ props.location.content }</p>
+                    </Col>
+                </Row>
+            </Container>
+        </div>
+    );
+}
+
 
 export default NoteView;

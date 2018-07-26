@@ -49,7 +49,7 @@ class App extends Component {
   };
 
   editCurrentNote = id => {
-   console.log('ID', id)
+    console.log('ID', id)
     const { title, content } = this.state;
     axios
       .put(`https://lambda-notes-back-end.herokuapp.com/api/notes/${id}/edit`, { title, content })
@@ -66,6 +66,10 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
+  toggle = () => {
+    this.setState({ modal: !this.state.modal });
+  }
+
   deleteNote = (id) => {
     axios
       .delete(
@@ -73,10 +77,7 @@ class App extends Component {
       )
       .then(res => {
         const note = res.data;
-        // this.setState({ note });
         console.log(note);
-        // this.props.deleteNote(id);
-        // this.props.history.push('/');
       });
   }
 
@@ -98,6 +99,8 @@ class App extends Component {
       { ...props }
       deleteNote={ this.deleteNote }
       editCurrentNote={ this.editCurrentNote }
+      toggle={ this.toggle }
+      modal={ this.state.modal }
     />
   )
 
@@ -110,8 +113,9 @@ class App extends Component {
       editCurrentNote={ this.editCurrentNote }
     />
   )
- 
+
   render() {
+    console.log('STATE', this.state)
     return (
       <div className='app'>
         <Route exact path='/' render={ this.renderListView } />
