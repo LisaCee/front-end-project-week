@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 import DeleteModal from './DeleteModal';
 import Sidebar from './Sidebar';
@@ -14,19 +13,10 @@ class NoteView extends Component {
             modal: false,
         }
         console.log('NOTE', props)
-        console.log('STATE', this.state)
     }
-    
-    // componentDidMount() {
-    //     axios
-    //         .get(`https://lambda-notes-back-end.herokuapp.com/api/notes/${this.props.match.params.id}`)
-    //         .then(res => {
-    //             console.log(res.data)
-    //             const note = res.data;
-    //             this.setState({ note });
-    //         })
-    //         .catch(err => console.log(err));
-    // }
+    toggle = () => {
+        this.setState({ modal: !this.state.modal });
+    }
     render() {
 
         return (
@@ -46,6 +36,7 @@ class NoteView extends Component {
                                     <DeleteModal
                                         toggle={ this.toggle }
                                         delete={ this.props.deleteNote }
+                                        id={this.props.location.id}
                                         { ...this.state }
                                     />
                                 ) }
