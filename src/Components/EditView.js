@@ -8,7 +8,7 @@ import "../css/CreateNote.css";
 const EditView = props => {
     console.log('EDIT', props)
     const handleEdit = e => {
-        e.preventDefault()
+        // e.preventDefault()
         props.editCurrentNote(props.match.params.id)
         props.history.push('/')
     }

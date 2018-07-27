@@ -7,10 +7,10 @@ import Sidebar from './Sidebar';
 import '../css/NoteView.css';
 
 const NoteView = props => {
-    console.log('PROPS', props)
     const handleDelete = e => {
         props.deleteNote(props.match.params.id)
         props.history.push('/')
+        props.toggle();
     }
 
     return (

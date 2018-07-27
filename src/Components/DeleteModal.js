@@ -7,7 +7,7 @@ const DeleteModal = (props) => {
 
     return (
         <div>
-            <Modal isOpen={ props.modal } toggle={ props.toggle }>
+            <Modal isOpen={ props.modal }>
                 <ModalBody>
                     <p>Are you sure you want to delete this?</p>
                     <Button className='deleteButton' onClick={ () => props.delete(props.id) }>
