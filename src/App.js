@@ -7,7 +7,7 @@ import CreateNote from './Components/CreateNote';
 import ListView from './Components/ListView';
 import NoteView from './Components/NoteView';
 import EditView from './Components/EditView';
-import DeleteModal from './Components/DeleteModal';
+// import DeleteModal from './Components/DeleteModal';
 
 
 class App extends Component {
