@@ -6,6 +6,7 @@ import "../css/CreateNote.css";
 
 
 const EditView = props => {
+    console.log('EDIT', props)
     const handleEdit = e => {
         e.preventDefault()
         props.editCurrentNote(props.match.params.id)

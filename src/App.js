@@ -54,7 +54,7 @@ class App extends Component {
     const { title, content } = this.state;
     axios
       .put(`https://lambda-notes-back-end.herokuapp.com/api/notes/${id}/edit`, { title, content })
-      .then(() => {
+      .then((_res) => {
         const notes = this.state.notes.map(
           note => (note._id === id ? { title, content } : note)
         )
@@ -75,26 +75,24 @@ class App extends Component {
     axios
       .delete(
         `https://lambda-notes-back-end.herokuapp.com/api/notes/${id}`)
-      .then(() => {
-        axios
-          .get("https://lambda-notes-back-end.herokuapp.com/api/notes")
-          .then(res => {
-            const notes = res.data;
-            this.setState({ notes });
+      .then((res) => {
+            console.log('RES', res)
+            const notes = this.state.notes.filter(
+              note => note._id !== id
+            )
+            this.setState({ notes })
           })
           .catch(err => console.log(err));
-      })
-      .catch(err => console.log(err))
   }
 
-  renderListView = props => <ListView notes={ this.state.notes } />;
+  renderListView = _props => <ListView notes={ this.state.notes } />;
 
   renderCreate = props => (
     <CreateNote
       { ...props }
       title={ this.state.title }
       content={ this.state.content }
-      id={this.state.id}
+      id={ this.state.id }
       updateInput={ this.updateInput }
       createNewNote={ this.createNewNote }
     />
@@ -129,7 +127,6 @@ class App extends Component {
         <Route exact path='/create' render={ this.renderCreate } />
         <Route exact path='/:id' render={ this.renderNote } />
         <Route exact path='/:id/edit' render={ this.renderEdit } />
-        <Route exact path='/:id' render={ this.renderDelete } />
       </div>
     );
   }

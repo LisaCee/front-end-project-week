@@ -23,7 +23,7 @@ const NoteView = props => {
                     </Col>
                     <Col xs='9'>
                         <div className='viewLinks'>
-                            <Link to={ { pathname: `/${props.match.params.id}/edit`, id: props.location._id }  }>
+                            <Link to={ { pathname: `/${props.match.params.id}/edit`, id: props.match.params.id }  }>
                                 edit
                                 </Link>
                             <a className='noteViewLink' onClick={ props.toggle }>delete</a>

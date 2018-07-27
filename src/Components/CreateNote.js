@@ -7,13 +7,7 @@ import "../css/CreateNote.css";
 
 
 const CreateNote = props => {
-    // console.log('CREATE', props)
-    // const submit = event => {
-    //     event.preventDefault()
-    //     props.createNewNote()
-    //     props.history.push('/')
-    // }
-   
+
         return (
             <Container className='container'>
                 <Row>
@@ -48,8 +42,7 @@ const CreateNote = props => {
             </Container>
         )
     }
-    
-// }
+
 
 export default CreateNote;
 
