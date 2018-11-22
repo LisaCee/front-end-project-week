@@ -7,7 +7,7 @@ import CreateNote from './Components/CreateNote';
 import ListView from './Components/ListView';
 import NoteView from './Components/NoteView';
 import EditView from './Components/EditView';
-// import DeleteModal from './Components/DeleteModal';
+import Signup from './Components/Signup';
 
 
 class App extends Component {
@@ -15,6 +15,10 @@ class App extends Component {
     notes: [],
     title: '',
     content: '',
+    users: [],
+    email: '',
+    username: '',
+    password: '',
     modal: false
   };
 
@@ -46,6 +50,21 @@ class App extends Component {
         })
 
       )
+      .catch(err => console.log(err));
+  };
+
+  createNewUser = () => {
+    const { email, username, password } = this.state;
+
+    axios 
+      .post('https://lambda-notes-back-end.herokupaa.com/api/user', {email, username, password})
+      .then(({user}) => {
+        this.setState({
+          email: '',
+          username: '',
+          password: ''
+        })
+      }) 
       .catch(err => console.log(err));
   };
 
@@ -96,6 +115,17 @@ class App extends Component {
       id={ this.state.id }
       updateInput={ this.updateInput }
       createNewNote={ this.createNewNote }
+    />
+  )
+
+  renderSignup = props => (
+    <Signup
+      { ...props }
+      email={ this.state.email }
+      username={ this.state.username }
+      password={ this.state.password }
+      updateInput={ this.updateInput }
+      createNewUser={ this.createNewUser }
     />
   )
 
